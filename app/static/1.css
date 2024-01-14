@@ -1,0 +1,74 @@
+
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f3f3f3;
+}
+
+h2 {
+text-align: center;
+color: #333;
+}
+
+header {
+background-color: #333;
+padding: 10px;
+display: flex;
+justify-content: space-around;
+}
+
+header a {
+color: #fff;
+text-decoration: none;
+padding: 5px 10px;
+border-radius: 5px;
+}
+
+header a:hover {
+background-color: #555;
+}
+
+main {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+margin-top: 20px;
+}
+
+.card {
+width: 300px;
+height: 400px; /* Set the height according to your needs */
+background-color: #fff;
+box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+border-radius: 5px;
+margin-bottom: 20px;
+padding: 10px;
+text-align: center;
+}
+
+.card img {
+width: 100%;
+height: 70%; /* Adjust the height of the image */
+object-fit: cover; /* Scale the image to cover the specified height */
+margin-bottom: 10px;
+border-radius: 5px;
+}
+
+.card p {
+    margin: 5px 0;
+}
+
+.card button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: #555;
+}
+
