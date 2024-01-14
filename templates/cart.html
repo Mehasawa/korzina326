@@ -16,11 +16,11 @@
         {% for one in tovari %}
             <tr>
                 <td>{{ one.tovar.name }}</td>
-                <td><a href="">
+                <td><a href="{% url 'count' -1 one.id %}">
                     <button> - </button>
                 </a></td>
                 <td>{{ one.count }}шт</td>
-                <td><a href="">
+                <td><a href="{% url 'count' 1 one.id %}">
                     <button> + </button>
                 </a></td>
                 <td>{{ one.summa }}р</td>
