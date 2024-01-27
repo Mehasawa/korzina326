@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Корзина</title>
     <link rel="stylesheet" href="{% static '1.css' %}">
+    <script src="{% static  '1.js' %}" defer></script>
 </head>
 <body>
     <h2>Корзина</h2>
@@ -31,5 +32,16 @@
         {% endfor %}
     </table>
     <h2>Итог {{ total }}р</h2>
+    <hr>
+<button id="formbut">Оформить</button>
+    <div id="formdiv" hidden>
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{ formaorder }}
+{#            {{ formaorder.errors }}#}
+            <input type="submit" value="Отправить">
+        </form>
+    </div>
+
 </body>
 </html>
