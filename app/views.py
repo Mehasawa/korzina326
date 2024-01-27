@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
+import telebot
 # Create your views here.
 def index(req):
     items = Tovar.objects.all()
@@ -33,13 +34,17 @@ def toCart(req):
                 myzakaz+='количество '+str(one.count)+' '
                 myzakaz+='сумма '+str(one.summa)+' '
                 myzakaz+='скидка '+str(one.tovar.discount)+' '
-            Order.objects.create(adres=k1,
+            neworder = Order.objects.create(adres=k1,
                                  tel=k2,
                                  email=k3,
                                  total=total,
                                  myzakaz=myzakaz,
                                  user=req.user)
             items.delete()
+            ##################################################################################
+            #в телеграм
+            telegram(neworder)
+
             return render(req,'sps.html')
     data={'tovari':items, 'total':total, 'formaorder':forma}
     return render(req,'cart.html',data)
@@ -72,3 +77,21 @@ def cartCount(req, num, id):
     item.save()
 
     return redirect('tocart')
+
+# def telegram(neworder):
+#     token =  '6318516374:AAEAhDRrQun0mbwU2zFiTVUaKBUuD81n1g4'
+#     # t.me/turtle3000_bot
+#     chat =  '1186459178'
+#     message = neworder.user.username + ' '+neworder.tel+ ' '+ neworder.myzakaz
+#     bot = telebot.TeleBot(token)
+#     bot.send_message(chat,'новый заказ')
+#     bot.send_message(chat, message)
+
+import requests
+def telegram(neworder):
+    token = '6318516374:AAEAhDRrQun0mbwU2zFiTVUaKBUuD81n1g4'
+    # t.me/turtle3000_bot
+    chat = '1186459178'
+    message = neworder.user.username + ' ' + neworder.tel + ' ' + neworder.myzakaz
+    url = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat}&text={message}"
+    requests.get(url)
